@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: E-commerce automation platform
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    url: jdbc:h2:file:./data/automation
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  sql:
+    init:
+      schema-locations: classpath:sql/**.sql
+      mode: always
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+
+#mybatis-plus:
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+appiumService:
+  address: 127.0.0.1
+  port: 4728
+
+
+Android:
+  automationName: UiAutomator2
+  platformName: Android
+
+ios:
+  automationName: XCUITest
+  platformName: iOS
+
+pingduoduoinfo:
+  appCustomerPackage: 'com.xunmeng.pinduoduo'
+  appCustomerActivity: 'com.xunmeng.pinduoduo.ui.activity.MainFrameActivity'
+  appBusinessPackage: 'com.xunmeng.merchant'
+  appBusinessActivity: 'com.xunmeng.merchant.ui.MainFrameTabActivity'
+
+appName:
+  main: 易电商
+

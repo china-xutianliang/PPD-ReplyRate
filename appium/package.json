@@ -1,0 +1,26 @@
+{
+  "name": "appium",
+  "version": "1.0.0",
+  "description": "Appium Node.js Service",
+  "main": "appiumService.js",
+  "scripts": {
+    "start": "node appiumService.js"
+  },
+  "bin": "appiumService.js",
+  "pkg": {
+    "assets": [
+      "node_modules/appium/build/**/*",
+      "node_modules/appium/package.json",
+      "node_modules/@appium/**/*",
+      "sdk/*",
+      "node_modules/appium/node_modules/io.appium.settings/apks/settings_apk-debug.apk",
+	  "node_modules/appium/node_modules/appium-uiautomator2-server/apks/appium-uiautomator2-server-v4.27.0.apk"
+    ],
+    "targets": [
+      "node14-win-x64"
+    ]
+  },
+  "dependencies": {
+    "appium": "^1.22.0"
+  }
+}

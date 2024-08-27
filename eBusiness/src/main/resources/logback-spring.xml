@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="30 minutes">
+
+    <springProperty scope="context" name="spring.application.name" source="spring.application.name"/>
+
+    <!-- 将 LOG_HOME 设置为当前项目目录 -->
+    <property name="LOG_HOME" value="${user.dir}/logs"/>
+    <property name="mainLog" value="main.log"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [${spring.application.name:-},%X{traceId:-},%X{spanId:-}] [%thread] %-5level %logger{36}:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="mainLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 使用当前项目目录 -->
+        <file>${LOG_HOME}/${mainLog}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <maxHistory>3</maxHistory>
+            <fileNamePattern>${LOG_HOME}/${mainLog}.%d{yyyy-MM-dd}.zip
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [${spring.application.name:-},%X{traceId:-},%X{spanId:-}] [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="mainLogAppender"/>
+    </root>
+
+</configuration>
